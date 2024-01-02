@@ -13,11 +13,18 @@
     <div></div>
 </section>
 
-<div>Cast:</div>
+<div>Dogs:</div>
 <ul>
-  <%- park.dogs.map(d => 
-    `<li>${d.name} <small>${d.size}</small></li>`
-  ).join('') %>
+  <% park.dogs.map(d => { %>
+    <%-`<li>${d.name} <small>${d.size} lbs</small></li>` %>
+    <%- `<form action="/parks/${park._id}/dogs/${d._id}?_method=DELETE" class="delete-form" method="POST">`%>
+    <%- `<button type="submit">X</button></form>` %>
+  <%}) %>
+
+  
+
+
+
 </ul>
 <!-- end cast list -->
 </section>

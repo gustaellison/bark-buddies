@@ -6,6 +6,7 @@ var logger = require('morgan');
 // variable for express-session and passport modules that we installed 
 const session = require('express-session')
 const passport = require('passport')
+const methodOverride = require('method-override')
 
 
 //requiring the env file
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'))
 
 //Configuring and mounting middleware for OAuth and passport
 app.use(session({
@@ -44,10 +46,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 app.use(function(req, res, next){
   res.locals.user = req.user;
   next();
 })
+
+
 
 app.use('/', indexRouter);
 

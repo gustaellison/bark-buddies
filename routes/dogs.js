@@ -10,5 +10,7 @@ router.get('/dogs/new', dogsCtrl.new);
 router.post('/dogs', dogsCtrl.create);
 // POST /movies/:id/performers (associate a performer with a movie)
 router.post('/parks/:id/dogs', dogsCtrl.addToPark);
+router.delete('/parks/:id/dogs/:dId', dogsCtrl.delete);
+
 
 module.exports = router;

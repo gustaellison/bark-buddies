@@ -4,8 +4,16 @@ const Park = require('../models/park');
 module.exports = {
     new: newDog,
     create,
-    addToPark
+    addToPark,
+    delete: removeFromPark
 };
+
+async function removeFromPark(req, res){
+    const park = await Park.findById(req.params.id)
+    park.dogs.remove(req.params.dId);
+    await park.save();
+	res.redirect(`/parks/${park._id}`)
+}
 
 async function addToPark(req, res) {
     const park = await Park.findById(req.params.id);
