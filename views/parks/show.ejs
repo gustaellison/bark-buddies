@@ -1,0 +1,83 @@
+<%- include('../partials/header') %>
+
+<section class="park-info-show">
+    <div><%= park.name %></div>
+    <div>Address:</div>
+    <div><%= park.address %></div>
+    <div>Size:</div>
+    <div><%= park.size %></div>
+    <div>Features:</div>
+    <div><%= park.features %></div>
+    <div>Fee:</div>
+    <div><%= park.fee %></div>
+    <div></div>
+</section>
+
+<div>Cast:</div>
+<ul>
+  <%- park.dogs.map(d => 
+    `<li>${d.name} <small>${d.size}</small></li>`
+  ).join('') %>
+</ul>
+<!-- end cast list -->
+</section>
+
+<form id="add-dog-to-park" action="/parks/<%= park._id %>/dogs" method="POST">
+  <select name="dogId">
+    <!-- Emit an option for each performer -->
+    <%- dogs.map(d => 
+      `<option value="${d._id}">${d.name}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add Dog To Park</button>
+</form>
+
+<br><br><h2>Reviews</h2>
+<form id="add-review-form" method="POST" action="/parks/<%= park._id %>/reviews">
+    <textarea name="content"></textarea>
+    <label>Rating:</label>
+    <select name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5" selected>5</option>
+    </select>
+    <input type="submit" value="Add Review">
+</form>
+
+
+<% if (park.reviews.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Yep, we can define variables! -->
+      <% let total = 0 %>
+      <% park.reviews.forEach(function(r) { %>
+        <!-- Accumulate the total rating -->
+        <% total += r.rating %>
+        <tr>
+          <!-- .toLocaleDateString() provides a more friendly date format -->
+          <td><%= r.createdAt.toLocaleDateString() %></td>
+          <td><%= r.content %></td>
+          <td><%= r.rating %></td>
+        </tr>
+      <% }); %>
+      <!-- Add a row to display the avg AFTER the forEach iteration  -->
+      <tr>
+        <td colspan="2"></td>
+        <td><strong><%= (total / park.reviews.length).toFixed(1) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
+
+<%- include('../partials/footer') %>

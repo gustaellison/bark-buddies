@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<div>Before adding, please ensure that the Dog is not in the following list:</div>
+<section id="badge-container">
+  <% dogs.forEach(function(d) { %>
+    <article class="badge"><%= d.name %></article>
+  <% }) %>
+</section>
+
+<form id="add-performer-form" action="/dogs" method="POST">
+  <label>Name:</label>
+  <input type="text" name="name">
+  <label>Size:</label>
+  <input type="text" name="size">
+  <input type="submit" value="Add Dog">
+</form>
+
+<%- include('../partials/footer') %>

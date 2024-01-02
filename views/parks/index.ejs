@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<!-- <iframe src="https://www.google.com/maps/d/embed?mid=1rtBIO2ig3ze6Tp3NkqzwtdqR1fIv6Fk&ehbc=2E312F" width="640" height="480"></iframe> -->
+
+    <table id="list">
+        <thead>
+            <tr>
+                <th>Park Name</th>
+                <th>Location</th>
+                <th>Features</th>
+                <th>Fee</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% park.forEach(function(p) { %>
+                <tr>
+                    <td>
+                        <%= p.name %>
+                    </td>
+                    <td>
+                        <%= p.address %>
+                    </td>
+                    <td>
+                        <%= p.features %>
+                    </td>
+                    <td>
+                        <%= p.fee %>
+                    </td>
+                    <td><a href="/parks/<%= p._id %>">DETAILS</a></td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+    <a href="/parks/new">Add A New Park</a>
+
+    <%- include('../partials/footer') %>

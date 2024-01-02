@@ -1,4 +1,4 @@
-# park-buddies
+# bark-finder
 
 This app is designed to allow users to create listings for local Dog parks, add dogs that they have seen at the dog park along with personality traits, and leave reviews for the parks.
 
