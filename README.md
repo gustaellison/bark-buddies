@@ -7,3 +7,5 @@ This app is designed to allow users to create listings for local Dog parks, add 
 ![wireframe](/public/images/Wireframe.png)
 
 [Trello Board](https://trello.com/b/s9j8PM7c/bark-buddies)
+
+[Heroku Deployed App](https://bark-finder-bf4f0b00755e.herokuapp.com/)
